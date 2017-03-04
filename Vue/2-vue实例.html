@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>vue实例</title>
+<script src="vue.js"></script>
+</head>
+<body>
+	<div id="demo" v-on:click="clickHandle">
+		{{ name }}
+	</div>
+
+<script type="text/javascript">
+/*
+	vue实例：
+		每一个应用都是通过Vue这个构造函数创建根实例启动：new Vue(选项对象)
+
+	vue代理data数据：
+		每个Vue实例都会代理其data对象里有所属性，这些被代理的属性是响应的，新添加的属性不具备响应功能，改变后不会更新视图。
+*/
+	 let obj = {
+	 	name : '杨中旭'
+	 }
+
+	 //声明式渲染
+	 var v = new Vue({
+	 	el:'#demo',//挂载的元素点
+	 	data:obj,//渲染的代理数据
+
+	 	methods:{//元素对应的方法；调用方法是在元素上添加属性：v-on:click="函数名"
+	 		clickHandle(){//clickHandle就是一个函数名，这里声明函数的方法是es方法；
+	 			alert('是我');
+	 		}
+	 	}
+	 });
+	 console.log(typeof v)
+</script>
+</body>
+</html>

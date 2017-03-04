@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>vue实例</title>
+<style>
+	.bg{
+		background: yellow;
+	}
+</style>
+<script src="vue.js"></script>
+</head>
+<body>
+	<div id="demo" :age="age"></div>
+
+<script type="text/javascript">
+/*
+	render函数：
+		
+*/
+	 let obj = {
+	 	name : '杨中旭',
+	 	age : 18
+	 }
+
+	 var v = new Vue({
+	 	el:'#demo',
+	 	data:obj,
+	 	render(createElement){//创建元素的函数
+	 		return createElement(
+	 			"ul",//要创建的元素
+	 			{
+	 				class:{//给创建的元素class名
+	 					bg:true
+	 				},
+	 				style:{//给创建的元素样式
+	 					border: "1px solid #000"
+	 				},
+	 				attrs:{//给创建的元素添加自定义属性
+	 					index: "yzx"
+	 				},
+	 				domProps:{//DOM元素的属性
+	 					innerHTML:"<li>我会让下面创建的3个li无效</li>"
+	 				},
+	 				on:{
+	 					click:fn(){
+	 						alert('我弹出来了')
+	 					}
+	 				}
+	 			},
+	 			[//这个数组里放所创建元素的子元素
+	 				createElement("li",1),
+	 				createElement("li",2),
+	 				createElement("li",3),
+	 			]
+	 		)
+	 	}
+	 });
+</script>
+</body>
+</html>

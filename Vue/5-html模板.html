@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>vue实例</title>
+<script src="vue.js"></script>
+</head>
+<body>
+	<div id="demo" :age="age">
+		{{ name }}
+	</div>
+
+<script type="text/javascript">
+/*
+	html模板：
+		基于DOM的模板，模板都是可解析的有效的html。
+	
+	插值：
+		属性：使用v-bind进行绑定，就可以使属性也响应变化。
+
+		文本：使用{{ value }}替换实例上的属性值，当值改变时，插值内容处会自动更新。
+		原生的html：双大括号里输出的内容是字符串形式，不会解析标签。
+		{{ }}中还可以写一些简单的表达式（比如：1+2、true?yes:no）
+*/
+	 let obj = {
+	 	name : '杨中旭',
+	 	age : 18
+	 }
+
+	 var v = new Vue({
+	 	el:'#demo',
+	 	data:obj
+	 });
+</script>
+</body>
+</html>
