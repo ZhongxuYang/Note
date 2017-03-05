@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			canvas{
+				border: 1px solid #000000;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="drawing" width="500" height="500"></canvas>
+		<script type="text/javascript">
+			/*
+				lineCap = 设置线条两端的形状
+				
+				注意:lineCap只能用于线段的开头处和结尾处
+				
+			 */
+			var drawing = document.getElementById('drawing');//获取到画布
+			
+			if( drawing.getContext ){
+				var cxt = drawing.getContext('2d');
+				
+				cxt.strokeStyle = 'red';
+				cxt.lineWidth = 50;
+				
+				cxt.beginPath();
+				cxt.moveTo(100,100);
+				cxt.lineTo(200,100);
+				cxt.lineCap = 'butt';//默认
+				cxt.stroke();
+				
+				cxt.beginPath();
+				cxt.moveTo(100,200);
+				cxt.lineTo(200,200);
+				cxt.lineCap = 'round';//圆角
+				cxt.stroke();
+				
+				cxt.beginPath();
+				cxt.moveTo(100,300);
+				cxt.lineTo(200,300);
+				cxt.lineCap = 'square';//方角
+				cxt.stroke();
+				
+				//基线
+				cxt.beginPath();
+				cxt.moveTo(100,50);
+				cxt.lineTo(100,400);
+				cxt.strokeStyle = 'black';
+				cxt.lineWidth = 1;
+				cxt.stroke();
+				
+				cxt.beginPath();
+				cxt.moveTo(200,50);
+				cxt.lineTo(200,400);
+				cxt.strokeStyle = 'black';
+				cxt.lineWidth = 1;
+				cxt.stroke();
+			}
+		</script>
+	</body>
+</html>

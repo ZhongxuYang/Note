@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			canvas{
+				border: 1px solid #000000;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="drawing" width="800" height="500"></canvas>
+		<script type="text/javascript">
+			var drawing = document.getElementById('drawing');//获取到画布
+			
+			if( drawing.getContext ){
+				var context = drawing.getContext('2d');
+				
+				context.fillStyle = "black";
+				context.fillRect(0,0,drawing.width,drawing.height);
+				
+				for(var i=0;i<200;i++){//循环200个星星
+					var R = Math.random()*10 + 10;//随机星星的大小
+					var x = Math.random() * drawing.width;//随机x轴位置
+					var y = Math.random() * drawing.height;//随机y轴位置
+					var rot = Math.random()*360;//随机星星旋转角度
+					
+					drawStar(context,x,y,R,rot);
+				}
+				
+			}
+			function drawStar( cxt,x,y,R,rot ){
+				
+				cxt.save();
+				
+				cxt.translate( x,y );
+				cxt.rotate( rot/180*Math.PI )
+				
+				starPath(cxt);
+				
+				cxt.fillStyle = "#fb3";
+				cxt.strokeStyle = "#fd5";
+				cxt.lineWidth = 3;
+				cxt.lineJoin = "round";
+				
+				cxt.fill();
+				cxt.stroke();
+				
+				cxt.restore();
+				
+			}
+			
+			function starPath( cxt ){
+				cxt.beginPath();
+				for( var i=0 ; i<5 ; i++ ){
+					cxt.lineTo( Math.cos( ( 18 + i*72 )/180 * Math.PI ) * 20,
+								-Math.sin( ( 18 + i*72 )/180 * Math.PI ) ) * 20;
+					cxt.lineTo( Math.cos( ( 54 + i*72 )/180 * Math.PI ) * 0.5 * 20,
+								-Math.sin( ( 54 + i*72 )/180 * Math.PI ) ) * 0.5 * 20;
+				}
+				cxt.closePath();
+				
+			}
+		</script>
+	</body>
+</html>

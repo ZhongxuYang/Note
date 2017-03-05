@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				text-align: center;
+			}
+			canvas{
+				border: 1px solid #000000;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="drawing" width="500" height="500"></canvas>
+		<script type="text/javascript">
+			var drawing = document.getElementById('drawing');//获取到画布
+			
+			if( drawing.getContext ){//判断浏览器是否支持canvas
+				var context = drawing.getContext('2d');//定义2d的上下文
+				
+				context.beginPath();
+				context.strokeStyle = 'red';//红色画
+				//绘制外圆
+				context.arc(250,250,250,0,2*Math.PI,false);//绘制外圆。（x轴圆心坐标，y圆心坐标，半径，起点，终点，是否逆时针）
+				
+				//绘制内圆
+				context.moveTo(450,250);//移动路径，类似于抬笔到新的坐标位置
+				context.arc(250,250,200,0,2*Math.PI,false);//绘制内圆
+				
+				//绘制分针
+				context.moveTo(250,250);//移动到圆心位置
+				context.lineTo(250,100);//画线
+				
+				context.stroke();//绘制上面内容
+				
+				context.beginPath();//以下是新规划路径
+				
+				//绘制时针
+				context.moveTo(250,250);
+				context.lineTo(150,250);
+				context.lineWidth = 10;//线条宽度
+				context.strokeStyle = 'yellowgreen';//线条样式
+				
+				//检测指定坐标是否位于路径上
+//				alert(context.isPointInPath(100,100));//???????明明不在啊
+				
+				//描边路径
+				context.stroke();//如果没有这个，上面画的东西就无法显示出来。
+				context.fillStyle = 'rgba(0,0,0,0.3)';//填充颜色
+				context.fill();//填充
+				
+				//绘制文本
+				context.font = 'bold 40px 微软雅黑';//字体
+				context.textAlign = 'center';//横向对齐方式
+				context.textBaseline = 'middle';//纵向对齐方式
+				context.strokeStyle = 'blue';//描边颜色
+				context.strokeText('十二',250,20);//描边出字
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			canvas{
+				border: 1px solid #000000;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="drawing" width="800" height="500"></canvas>
+		<script type="text/javascript">
+			/*
+				变换矩阵:
+					transform(a,b,c,d,e,f);
+					
+					a c e
+					b d f
+					0 0 1
+				
+					a,d 水平/垂直缩放
+					b,c 水平/垂直倾斜
+					e,f 水平/垂直位移
+					
+					setTransform(1,0,0,1,0,0);//因为transform是叠加的,所以变换多了之后就会乱,可以用这个重新设置transform
+			 */
+			var drawing = document.getElementById('drawing');//获取到画布
+			
+			if( drawing.getContext ){
+				var context = drawing.getContext('2d');
+				
+				context.fillStyle = 'red';
+				context.strokeStyle = 'blue';
+				context.lineWidth = 5;
+				
+				context.save();
+				context.transform(2,-0.2,0.2,0.5,50,100);
+				context.setTransform(1,0,0,1,0,0);//设置之后,之前的transform会失效
+				context.fillRect(10,10,200,200);
+				context.strokeRect(10,10,200,200);
+				context.fill();
+				context.stroke();
+				context.restore();
+			}
+			
+		</script>
+	</body>
+</html>

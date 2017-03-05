@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			canvas{
+				border: 1px solid #000000;
+				/*margin: auto;*/
+				/*注意：canvas不是块级元素，所以不能设置margin*/
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="drawing" width="500" height="500"></canvas>
+		<script type="text/javascript">
+			var drawing = document.getElementById('drawing');//获取到画布
+			
+			if( drawing.getContext ){//判断浏览器是否支持canvas
+				var context = drawing.getContext('2d');//定义2d的上下文
+				context.fillStyle = '#009999';//定义填充颜色
+				context.fillRect(10,10,50,50);//在坐标为(10,10)处开始绘制一个50*50的矩形
+				
+				context.fillStyle = 'red';
+				context.fillRect(20,20,50,50);
+				
+				context.clearRect(30,30,10,10);//在坐标(30,30)处绘制一个10*10的矩形，并清除这个矩形区域的内容
+			}
+		</script>
+	</body>
+</html>

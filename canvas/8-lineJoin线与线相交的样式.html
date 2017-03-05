@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			canvas{
+				border: 1px solid #000000;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="drawing" width="500" height="500"></canvas>
+		<script type="text/javascript">
+			/*
+				lineJoin:线与线相交处效果
+			 */
+			var drawing = document.getElementById('drawing');//获取到画布
+			
+			if( drawing.getContext ){
+				var context = drawing.getContext('2d');
+				
+				context.lineWidth = 20;
+				//context.lineJoin = "bevel";//变成平的
+				//context.lineJoin = "round";//变成圆角的
+				context.lineJoin = "miter";//最小角(具体上网查)
+				
+				drawStar(context,50,100,200,200,30);
+			}
+			function drawStar(cxt,r,R,x,y,rot){
+				cxt.beginPath();
+				for( var i=0 ; i<5 ; i++ ){
+					cxt.lineTo( Math.cos( ( 18 + i*72 - rot )/180 * Math.PI ) * R + x ,
+								-Math.sin( ( 18 + i*72 - rot )/180 * Math.PI ) * R + y );
+					cxt.lineTo( Math.cos( ( 54 + i*72 - rot )/180 * Math.PI ) * r + x ,
+								-Math.sin( ( 54 + i*72 - rot )/180 * Math.PI ) * r + y );
+				}
+				cxt.closePath();
+				cxt.stroke();
+			}
+		</script>
+	</body>
+</html>

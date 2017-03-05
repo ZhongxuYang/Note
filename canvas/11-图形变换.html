@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			canvas{
+				border: 1px solid #000000;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="drawing" width="800" height="500"></canvas>
+		<script type="text/javascript">
+			/*
+				图形变换:
+					位移 translate(x,y)
+					旋转 rotate(deg)
+					缩放 scale(sx,sy)
+					
+				canvas状态的保存和恢复:
+					save()
+					restore()
+			 */
+			var drawing = document.getElementById('drawing');//获取到画布
+			
+			if( drawing.getContext ){
+				var context = drawing.getContext('2d');
+				
+				context.fillStyle = 'chartreuse';
+				context.translate(100,100);
+				context.fillRect(0,0,400,400);
+				context.translate(-100,-100);//因为图形变换在canvas中是叠加的,所以用过变换之后要变换回初始位置,以免影响下面的使用;也可以使用save()和restore(),如下
+				
+				context.save();//保存一下当前canvas状态
+				context.fillStyle = 'palevioletred';
+				context.translate(200,200);
+				context.fillRect(0,0,100,100);
+				context.restore();//与save()成对出现,恢复save()保存时的状态(也就是不用手动将恢复初始位置)
+			}
+		</script>
+	</body>
+</html>

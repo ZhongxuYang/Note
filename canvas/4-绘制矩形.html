@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			canvas{
+				border: 1px solid #000000;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="drawing" width="500" height="500"></canvas>
+		<script type="text/javascript">
+			/*
+				cxt.rect(x,y,width,height);//规划矩形的路径,不会绘制出来,需要配合stroke()绘制
+				cxt.fillRect(x,y,width,height);//绘制矩形路径后直接填充,直接绘制
+				cxt.strokeRect(x,y,width,height);//绘制矩形路径后直接描边,直接绘制
+				
+			 */
+			var drawing = document.getElementById('drawing');//获取到画布
+			
+			if( drawing.getContext ){
+				var context = drawing.getContext('2d');
+				
+				drawRect(context,100,100,200,200,'red',5,'yellow');
+				drawRect(context,150,150,200,200,'rgba(111,111,111,0.5)',10,'blue');
+				
+				function drawRect(cxt,x,y,width,height,bg,borderWidth,borderColor){
+					cxt.fillStyle = bg;
+					cxt.lineWidth = borderWidth;
+					cxt.strokeStyle = borderColor;
+					
+					cxt.fillRect(x,y,width,height);
+					cxt.strokeRect(x,y,width,height);
+				}
+			}
+		</script>
+	</body>
+</html>

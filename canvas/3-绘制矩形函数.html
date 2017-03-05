@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			canvas{
+				border: 1px solid #000000;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="drawing" width="500" height="500"></canvas>
+		<script type="text/javascript">
+			var drawing = document.getElementById('drawing');//获取到画布
+			
+			if( drawing.getContext ){
+				var context = drawing.getContext('2d');
+				
+				drawRect(context,100,100,200,200,'red',5,'yellow');
+				
+				function drawRect(cxt,x,y,width,height,bg,borderWidth,borderColor){
+					cxt.beginPath();
+					cxt.moveTo( x , y );
+					cxt.lineTo( x+width , y );
+					cxt.lineTo( x+width , y+height );
+					cxt.lineTo( x , y+height );
+					cxt.closePath();
+					
+					cxt.fillStyle = bg;
+					cxt.lineWidth = borderWidth;
+					cxt.strokeStyle = borderColor;
+					
+					cxt.fill();
+					cxt.stroke();
+				}
+			}
+		</script>
+	</body>
+</html>
